@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>QuiZz</title>
+    <style>
+        body {
+            font-family: "Comic Sans MS",cursive, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .decor{
+            background: url('https://thumbs.dreamstime.com/b/blue-magenta-deep-cosmic-bright-pleasant-light-multicolor-rich-background-nebulae-many-stars-sparks-201783811.jpg');
+            background-repeat: no-repeat;
+            background-size:cover;
+            width: 100%;
+            height: 300px;
+            text-align: center;
+            padding-top: 25px;
+        }
+        .decor p{
+            color:white;
+            font-size:40px;
+            text-align: center;
+            font-weight:40px ;
+            background:transparent;
+            backdrop-filter: blur(45px);
+            border-radius: 30px;
+            margin-left: 30px;
+            margin-right: 30px;
+
+        }
+
+        header {
+            font-family:"Arial Black",Gadget,sans-serif;
+            background-color: #4d565e80;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .motiv-quote {
+            margin: 20px 0;
+            font-family: "Comic Sans MS",cursive, sans-serif;
+        }
+
+        .select-subject {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .subject-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .subject-item {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            padding-left: 50px;
+            background-color: rgb(170, 199, 199);
+            border-radius: 30px;
+            padding: 1rem;
+            padding-left: 40px;
+            box-shadow: 0 4px 0 0 rgba(23, 91, 150, 0.36);
+            
+        }
+
+        .logout {
+            color:black;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 16px;
+        }
+
+       
+
+        select {
+            margin-right: 10px;
+            margin-left: 1rem;
+            border-radius: 30px;
+
+        }
+        .subject-item button{
+            border-radius: 30px;
+        }
+        .subject-item button:hover{
+             background-color:cadetblue;
+                box-shadow: 0 4px 0 0 rgba(173, 147, 34, 0.36);
+            }
+        .subject-item button:active{
+              transform:scale(0.95);
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Test Your Knowledge!!</h1>
+        
+    </header>
+
+    <div class="container">
+        <div class="select-subject">
+            <h2><u>GENRE</u></h2>
+            <ul class="subject-list">
+                <li class="subject-item" data-category="9" >
+                   General Knowledge 
+                    <select>
+                        <option value="hard">Hard</option>
+                        <option value="medium">Medium</option>
+                        <option value="easy">Easy</option>
+                    </select>
+                    <button type="submit">Take Quiz</button>
+                
+                </li>
+                <li class="subject-item" data-category="10" >
+                    Books 
+                    <select>
+                        <option value="hard">Hard</option>
+                        <option value="medium">Medium</option>
+                        <option value="easy">Easy</option>
+                    </select>
+                    <button >Take Quiz</button>
+                </li>
+                <li class="subject-item" data-category="11" >
+                    Film 
+                    <select>
+                        <option value="hard">Hard</option>
+                        <option value="medium">Medium</option>
+                        <option value="easy">Easy</option>
+                    </select>
+                    <button>Take Quiz</button>
+                </li>
+                <li class="subject-item" data-category="12" >
+                    Music
+                    <select>
+                        <option value="hard">Hard</option>
+                        <option value="medium">Medium</option>
+                        <option value="easy">Easy</option>
+                    </select>
+                    <button>Take Quiz</button>
+                </li>
+                <li class="subject-item" data-category="15" >
+                    vediogames
+                    <select>
+                        <option value="hard">Hard</option>
+                        <option value="medium">Medium</option>
+                        <option value="easy">Easy</option>
+                    </select>
+                    <button>Take Quiz</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+document.querySelectorAll('.subject-item button').forEach((button) => {
+    button.addEventListener('click', startQuiz);
+});
+
+function startQuiz(event) {
+    const subjectItem = event.target.closest('.subject-item');
+    if (subjectItem) {
+        const category = subjectItem.getAttribute('data-category');
+        const difficulty = subjectItem.querySelector('select').value;
+      
+        const quizURL = `http://127.0.0.1:5500/views/quiz.htmlcategory=${category}&difficulty=${difficulty}`;
+
+        window.location.href = quizURL;
+    }
+}
+</script>
+
+    
+</body>
+</html>
